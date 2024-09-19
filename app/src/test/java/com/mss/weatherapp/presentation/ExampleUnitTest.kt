@@ -1,4 +1,4 @@
-package com.mss.weatherapp
+package com.mss.weatherapp.presentation
 
 import org.junit.Test
 
