@@ -1,5 +1,5 @@
 # WeatherApp
-A simple weather app that shows daily weather conditions, and weather forecasts; built with `Kotlin` using `MVVM` and `Clean Architecture` design pattern.
+A kotlin based Android weather app that shows daily weather conditions, and weather forecasts, built with `Kotlin` using `MVVM` and `Clean Architecture` design pattern.
 
 ## Feature
 > - This Weather App is an Android App build with MVVM Architecture using Kotlin language and Retrofit network calling library.
@@ -8,9 +8,11 @@ A simple weather app that shows daily weather conditions, and weather forecasts;
 > - To add a city to favorite list, User will have to mark it as favorite by clicking on heart icon. Cache data will be lost if app is uninstalled or data is cleared.
 
 ### Screenshots
-<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png">
-<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png">
-<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png">
+<div class="row" >
+  <img src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png" width="320">
+  <img src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png" width="320">
+  <img src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png" alt="Mountains" width="320">
+</div>
 
 
 ### Recording
