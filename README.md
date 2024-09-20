@@ -3,7 +3,7 @@ A kotlin based Android weather app that shows daily weather conditions, and weat
 
 ## Feature
 > - This Weather App is an Android App build with MVVM Architecture using Kotlin language and Retrofit network calling library.
-> - The app shows your current location, and a list of cities showing current temperature of the city.
+> - The app shows your location as per the current timezone, and a list of cities showing current temperature of the city.
 > - When a city is clicked, it will direct user to detailed screen whereby user will be able to see the current weather state of the city and forecast of the next 4-5 days, depend on api data. User can add city to his/her favorite lists.
 > - To add a city to favorite list, User will have to mark it as favorite by clicking on heart icon. Cache data will be lost if app is uninstalled or data is cleared.
 
