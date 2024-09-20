@@ -9,9 +9,9 @@ A simple weather app that shows daily weather conditions, and weather forecasts;
 
 ### Screenshots
 ![screenshot]
-<img width="929" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png">
-<img width="929" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png">
-<img width="929" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png">
+<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png">
+<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png">
+<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png">
 
 
 ### Recording
