@@ -74,7 +74,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun onNavigateToFavorites() {
-//        onNavigateToFavorites.value = true
+        onNavigateToFavorites.value = true
     }
 
     fun onNavigateToFavoritesResolved() {

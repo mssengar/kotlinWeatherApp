@@ -21,10 +21,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mss.weatherapp.R
 import com.mss.weatherapp.core.util.observeAsAction
+import com.mss.weatherapp.domain.models.FavoriteLocationModel
 import com.mss.weatherapp.domain.models.SearchResultModel
 import com.mss.weatherapp.domain.models.WeatherData
 import com.mss.weatherapp.presentation.component.theme.WeatherTheme
 import com.mss.weatherapp.presentation.screen.WeatherNavigationRoute
+import com.mss.weatherapp.presentation.screen.favorites.FavoriteScreen
+import com.mss.weatherapp.presentation.screen.favorites.FavoriteViewModel
 import com.mss.weatherapp.presentation.screen.home.HomeViewModel
 import com.mss.weatherapp.presentation.screen.home.WeatherDetailScreen
 import com.mss.weatherapp.presentation.screen.search.SearchScreen
@@ -98,6 +101,24 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                     }
+
+                    composable(WeatherNavigationRoute.Favorite.getName()) {
+                        val viewModel = hiltViewModel<FavoriteViewModel>()
+                        Scaffold() {
+                            FavoriteScreenPage(
+                                paddingValues = it,
+                                onBackIconClicked = mainViewModel::onNavigateBack,
+                                dateState = viewModel.dateState.observeAsState(),
+                                favoriteLocationDataList = viewModel.favoriteLocationDataList.observeAsState(),
+                                onFavoriteItemTapped = { favoriteLocationModel ->
+                                    mainViewModel.onShowWeatherDetail(favoriteLocationModel)
+                                },
+                            )
+
+
+                        }
+                    }
+
                     registerObservers(navController = navController)
 
                 }
@@ -154,11 +175,31 @@ class MainActivity : ComponentActivity() {
                 paddingValues = it,
                 onAppBarStartIconTapped = onLocationIconTapped,
                 onAppBarEndIconTapped = onSearchIconTapped,
-                appbarStartIcon = ImageVector.vectorResource(id = R.drawable.ic_map),
+                appbarStartIcon = ImageVector.vectorResource(id = R.drawable.ic_heart_filled),
                 appbarEndIcon = ImageVector.vectorResource(id = R.drawable.ic_search)
             )
 
         }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    private fun FavoriteScreenPage(
+        paddingValues: PaddingValues,
+        onBackIconClicked: () -> Unit,
+        dateState: State<String?>,
+        favoriteLocationDataList: State<List<FavoriteLocationModel>?>,
+        onFavoriteItemTapped: (favoriteLocationModel: FavoriteLocationModel) -> Unit
+    ) {
+
+        FavoriteScreen(
+            paddingValues = paddingValues,
+            onBackIconClicked = onBackIconClicked,
+            dateState = dateState,
+            favoriteLocationDataList = favoriteLocationDataList,
+            onFavoriteItemTapped = onFavoriteItemTapped,
+        )
+
     }
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -179,7 +220,7 @@ class MainActivity : ComponentActivity() {
                 appbarStartIcon = ImageVector.vectorResource(id = R.drawable.ic_back),
                 onAppBarEndIconTapped = onSaveLocationTapped,
                 appbarEndIcon = ImageVector.vectorResource(
-                    id = appBarEndIcon.value ?: R.drawable.ic_heart
+                    id = appBarEndIcon.value ?: R.drawable.ic_map
                 ),
             )
 
