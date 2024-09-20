@@ -27,6 +27,7 @@ A kotlin based Android weather app that shows daily weather conditions, and weat
     - Jetpack Compose for UI component design
     - Retrofit & OkHttp for network requests
     - Room DB for local caching
+    - Unit Test cases for view model
 ### API
 This project uses API data from [weatherapi.com](https://www.weatherapi.com/)
 
