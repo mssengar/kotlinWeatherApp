@@ -8,10 +8,9 @@ A simple weather app that shows daily weather conditions, and weather forecasts;
 > - To add a city to favorite list, User will have to mark it as favorite by clicking on heart icon. Cache data will be lost if app is uninstalled or data is cleared.
 
 ### Screenshots
-![screenshot]
-<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png">
-<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png">
-<img width="320" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png">
+<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/search_screen_shot.png">
+<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/weather_detail.png">
+<img width="305" height="480" alt="DFD" src="https://github.com/mssengar/kotlinWeatherApp/blob/main/app/src/main/java/com/mss/weatherapp/asset/Cache.png">
 
 
 ### Recording
