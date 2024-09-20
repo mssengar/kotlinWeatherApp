@@ -51,7 +51,7 @@ class WeatherDetailViewModel @Inject constructor(
         fetchWeatherDetail()
     }
 
-    val favoriteIcon: MutableLiveData<Int> = MutableLiveData(R.drawable.ic_heart)
+    val favoriteIcon: MutableLiveData<Int> = MutableLiveData(R.drawable.ic_map)
 
     private fun fetchWeatherDetail() {
 
@@ -64,7 +64,7 @@ class WeatherDetailViewModel @Inject constructor(
                 fetchHourlyForecastDataUseCase.invoke(favoriteLocationModel.getDisplayName(), 5)
             if (response is Outcome.Success) {
                 filterForecastedWeatherResult(response.data)
-                checkIfIsFavorite(response.data.firstOrNull()?.getIdentifier() ?: "")
+//                checkIfIsFavorite(response.data.firstOrNull()?.getIdentifier() ?: "")
             }
         }
     }
@@ -92,7 +92,7 @@ class WeatherDetailViewModel @Inject constructor(
             } else {
                 deleteSavedLocationUseCase.invoke(listOf(favoriteLocationModel))
             }
-            checkIfIsFavorite(favoriteLocationModel.getIdentifier())
+//            checkIfIsFavorite(favoriteLocationModel.getIdentifier())
 
         }
     }

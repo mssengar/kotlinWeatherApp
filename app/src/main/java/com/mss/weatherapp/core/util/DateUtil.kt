@@ -1,6 +1,6 @@
 package com.mss.weatherapp.core.util
 
-import java.lang.Exception
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -25,10 +25,16 @@ class DateUtil {
             return formatter.format(dateParser.parse(date) ?: "")
         }
 
-        fun getFormattedDateTime(date: String): String {
-            val dateParser = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH)
-            val formatter = SimpleDateFormat("HH:mm", Locale.ENGLISH)
-            return formatter.format(dateParser.parse(date) ?: "")
+        fun getFormattedTime(time: String): String {
+            try {
+                var updatedtime = time.split(" ")[1]
+                val sdf = SimpleDateFormat("HH:mm")
+                val dateObj = sdf.parse(updatedtime)
+                return SimpleDateFormat("hh:mm aa").format(dateObj)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
+            return time
         }
 
         fun getDateFromEpoch(timeInMillis: Long): String {

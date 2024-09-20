@@ -11,7 +11,7 @@
     <!-- Weather -->
     <string name="weather_stat_wind">Wind</string>
     <string name="weather_stat_temperature">Temp</string>
-    <string name="weather_stat_humidity">Hum</string>
+    <string name="weather_stat_humidity">Humidity</string>
     <string name="weather_stat_rain">Rain</string>
     <string name="degree_centigrade_placeholder">°C</string>
 

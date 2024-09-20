@@ -36,9 +36,9 @@ fun SimpleWind() {
 
 @Composable
 fun SimpleWindStat(wind: Float) {
-    SimpleWeatherStateSecondary(
+    SimpleWeatherStat(
         title = stringResource(id = R.string.weather_stat_wind),
-        icon = {  },
+        icon = { SimpleWind() },
         stat = String.format(stringResource(id = R.string.quantity_kilometer_per_hour), wind)
     )
 }
@@ -56,9 +56,9 @@ fun SimpleHumidity() {
 
 @Composable
 fun SimpleHumidityStat(humidity: Float) {
-    SimpleWeatherStateSecondary(
+    SimpleWeatherStat(
         title = stringResource(id = R.string.weather_stat_humidity),
-        icon = {  },
+        icon = { SimpleHumidity() },
         stat = String.format(
             stringResource(id = R.string.quantity_percent), humidity
         )
@@ -78,9 +78,9 @@ fun SimpleRain() {
 
 @Composable
 fun SimpleRainStat(rain: Float) {
-    SimpleWeatherStateSecondary(
+    SimpleWeatherStat(
         title = stringResource(id = R.string.weather_stat_rain),
-        icon = { },
+        icon = { SimpleRain() },
         stat = String.format(
             stringResource(id = R.string.quantity_percent), rain
         )
@@ -96,11 +96,6 @@ private fun SimpleRainStatPreview() {
 @Composable
 fun SimpleTemperature() {
     SimpleDrawableIcon(iconResource = R.drawable.ic_temperature)
-}
-
-@Composable
-fun SimpleText(text: String) {
-    Text(text = text, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace)
 }
 
 @Composable
@@ -128,25 +123,27 @@ private fun SimpleDrawableIcon(
     Icon(
         imageVector = ImageVector.vectorResource(id = iconResource),
         contentDescription = stringResource(id = contentDescription),
+        tint = Color.Gray
     )
 }
 
 @Composable
 fun SimpleWeatherCondition(iconResource: Int, description: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, ) {
-        Text(stringResource(id = R.string.weather_condition))
-        Spacer(modifier = Modifier.size(10.dp))
-        Text(text = description, fontSize = 18.sp)
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Icon(
+            imageVector = ImageVector.vectorResource(id = iconResource),
+            contentDescription = stringResource(id = R.string.content_description_none),
+            tint = Color.Gray
+        )
+        Text(text = description)
     }
 }
 
 @Composable
 fun SimpleHorizontalLine() {
-    Box(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-    ) {
+    Box(modifier = Modifier
+        .padding(8.dp)
+        .fillMaxWidth()) {
         Box(
             modifier = Modifier
                 .background(Color.Gray)
@@ -164,24 +161,26 @@ fun SimpleWeatherStat(
     icon: @Composable () -> Unit,
     stat: String,
 ) {
-    Column(horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.Center) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        icon.invoke()
         Text(text = stat, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace)
         title?.let {
-            Text(text = title, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace)
+            Text(text = title, color = Color.Gray)
         }
     }
 }
 
 @Composable
-fun SimpleWeatherStateSecondary(
+fun HourlyWeatherStatView(
     title: String? = null,
     icon: @Composable () -> Unit,
     stat: String,
 ) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Text(text = stat, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace)
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        icon.invoke()
+        Text(text = stat, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace, fontSize = 16.sp)
         title?.let {
-            Text(text = title, fontWeight = FontWeight.Light, fontFamily = FontFamily.Monospace)
+            Text(text = title, color = Color.Gray, fontSize = 14.sp)
         }
     }
 }

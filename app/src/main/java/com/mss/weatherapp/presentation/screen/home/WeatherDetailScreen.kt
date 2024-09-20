@@ -15,17 +15,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,14 +28,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mss.weatherapp.R
 import com.mss.weatherapp.core.util.DateUtil
 import com.mss.weatherapp.domain.models.WeatherData
 import com.mss.weatherapp.presentation.component.components.CenterContentTopAppBar
+import com.mss.weatherapp.presentation.component.components.HourlyWeatherStatView
 import com.mss.weatherapp.presentation.component.components.LargeVerticalSpacer
 import com.mss.weatherapp.presentation.component.components.MediumVerticalSpacer
 import com.mss.weatherapp.presentation.component.components.SimpleHorizontalLine
@@ -49,14 +43,14 @@ import com.mss.weatherapp.presentation.component.components.SimpleHumidityStat
 import com.mss.weatherapp.presentation.component.components.SimpleRain
 import com.mss.weatherapp.presentation.component.components.SimpleRainStat
 import com.mss.weatherapp.presentation.component.components.SimpleTemperature
-import com.mss.weatherapp.presentation.component.components.SimpleText
 import com.mss.weatherapp.presentation.component.components.SimpleWeatherCondition
-import com.mss.weatherapp.presentation.component.components.SimpleWeatherStat
 import com.mss.weatherapp.presentation.component.components.SimpleWindStat
 import com.mss.weatherapp.presentation.component.components.SmallVerticalSpacer
 import com.mss.weatherapp.presentation.component.components.TinyHorizontalSpacer
 import com.mss.weatherapp.presentation.component.components.TinyVerticalSpacer
-import com.mss.weatherapp.presentation.component.components.VerticalPartition
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -124,11 +118,19 @@ fun Content(
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_calendar,),
+                contentDescription = stringResource(
+                    id = R.string.content_description_date
+                ),
+                tint = Color.Gray
+            )
+            TinyHorizontalSpacer()
             Text(
-                "Today : " + DateUtil.getFormattedDateMonth(
+                DateUtil.getFormattedDateMonth(
                     weatherDataState.value?.firstOrNull()?.localTime ?: ""
                 ),
+                color = Color.Gray
             )
         }
         SmallVerticalSpacer()
@@ -187,13 +189,12 @@ fun Content(
 fun HourlyWeatherStat(items: List<WeatherData.Hourly>) {
     Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
         items.forEach {
-            SimpleWeatherStat(
-                title = "${stringResource(id = R.string.time)} ${DateUtil.getFormattedDateTime(it.time)}",
-                icon = { },
-                stat = "${stringResource(id = R.string.temp)} ${it.temp}°C"
-            )
             TinyHorizontalSpacer()
-            VerticalPartition()
+            HourlyWeatherStatView(
+                title = DateUtil.getFormattedTime(it.time),
+                icon = { SimpleRain() },
+                stat = "${it.temp}"
+            )
             TinyHorizontalSpacer()
         }
     }
@@ -211,7 +212,13 @@ fun DailyWeatherForecast(items: List<WeatherData.Daily?>) {
                     .width(100.dp),
                 contentAlignment = Alignment.Center
             ) {
-                SimpleText(text = stringResource(id = R.string.content_description_date))
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_calendar),
+                    contentDescription = stringResource(
+                        id = R.string.content_description_none
+                    ),
+                    tint = Color.Gray
+                )
             }
 
             Row(
@@ -220,9 +227,9 @@ fun DailyWeatherForecast(items: List<WeatherData.Daily?>) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                SimpleText(text = stringResource(id = R.string.weather_stat_temperature))
-                SimpleText(text = stringResource(id = R.string.weather_stat_humidity))
-                SimpleText(text = stringResource(id = R.string.weather_stat_rain))
+                SimpleTemperature()
+                SimpleHumidity()
+                SimpleRain()
             }
 
         }
@@ -281,49 +288,6 @@ fun DailyWeatherForecast(items: List<WeatherData.Daily?>) {
             }
 
         }
-    }
-}
-
-@Composable
-fun AlertDialogSample() {
-    MaterialTheme {
-        Column {
-            val openDialog = remember { mutableStateOf(false)  }
-
-            if (openDialog.value) {
-
-                AlertDialog(
-                    onDismissRequest = {
-                        openDialog.value = false
-                    },
-                    title = {
-                        Text(text = "Dialog Title Will Show Here")
-                    },
-                    text = {
-                        Text("Here is a description text of the dialog")
-                    },
-                    confirmButton = {
-                        Button(
-
-                            onClick = {
-                                openDialog.value = false
-                            }) {
-                            Text("Confirm Button")
-                        }
-                    },
-                    dismissButton = {
-                        Button(
-
-                            onClick = {
-                                openDialog.value = false
-                            }) {
-                            Text("Dismiss Button")
-                        }
-                    }
-                )
-            }
-        }
-
     }
 }
 
