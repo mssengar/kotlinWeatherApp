@@ -88,7 +88,7 @@ This project uses API data from [weatherapi.com](https://www.weatherapi.com/)
 
 
 ### Setup Instruction
-You can setup/run the project in two ways - either by downloading the project and compiling locally using Android Studio, or by downloading and installing the debug APK artifact straight from the build pipeline.
+You can setup/run the project in two ways - either by downloading the project and compiling locally using Android Studio, or by downloading and installing the debug APK straight from the drive link (https://drive.google.com/file/d/1_q7qU9Y3RLP2b0k_oS82_nQ3-etf1EaA/view?usp=drive_link).
 
 #### Run the project locally
 
